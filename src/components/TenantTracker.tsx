@@ -1,0 +1,93 @@
+
+import React from 'react';
+import Card from './Card';
+import Progress from './Progress';
+import StatusLabel from './StatusLabel';
+import { User, PenSquare } from 'lucide-react';
+
+interface Tenant {
+  id: string;
+  name: string;
+  property: string;
+  progress: number;
+  status: 'pending' | 'completed' | 'action-required';
+  dueDate?: string;
+}
+
+const tenants: Tenant[] = [
+  {
+    id: '1',
+    name: 'John Smith',
+    property: '123 Main St, Apt 4B',
+    progress: 75,
+    status: 'pending',
+    dueDate: 'Aug 15, 2023'
+  },
+  {
+    id: '2',
+    name: 'Emily Johnson',
+    property: '456 Park Ave, Unit 7',
+    progress: 30,
+    status: 'action-required',
+    dueDate: 'Aug 10, 2023'
+  },
+  {
+    id: '3',
+    name: 'Michael Williams',
+    property: '789 Broadway, Apt 12C',
+    progress: 100,
+    status: 'completed'
+  }
+];
+
+const TenantTracker = () => {
+  return (
+    <section className="mb-10">
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold">Tenant Tracker</h2>
+        <button className="text-mica-teal font-medium hover:underline">View All</button>
+      </div>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {tenants.map((tenant, index) => (
+          <Card 
+            key={tenant.id} 
+            className="flex flex-col"
+            style={{ animationDelay: `${0.1 * (index + 1)}s` }}
+          >
+            <div className="flex items-start mb-4">
+              <div className="bg-gray-100 rounded-full p-3 mr-4">
+                <User className="w-5 h-5 text-gray-500" />
+              </div>
+              
+              <div className="flex-1 min-w-0">
+                <div className="flex justify-between items-start mb-1">
+                  <h3 className="text-lg font-medium truncate">{tenant.name}</h3>
+                  <StatusLabel status={tenant.status} className="ml-2" />
+                </div>
+                <p className="text-gray-500 text-sm mb-2 truncate">{tenant.property}</p>
+                {tenant.dueDate && <p className="text-gray-400 text-xs">Due: {tenant.dueDate}</p>}
+              </div>
+            </div>
+            
+            <Progress 
+              value={tenant.progress} 
+              max={100} 
+              color={tenant.status === 'action-required' ? 'blue' : 'teal'} 
+              label="Application Progress"
+            />
+            
+            {tenant.status === 'action-required' && (
+              <button className="mt-4 w-full py-2 rounded-lg border border-mica-blue/30 text-mica-blue flex items-center justify-center gap-2 text-sm font-medium hover:bg-mica-blue/5 transition-colors">
+                <PenSquare className="w-4 h-4" />
+                Complete Missing Info
+              </button>
+            )}
+          </Card>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default TenantTracker;
