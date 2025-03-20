@@ -15,22 +15,22 @@ interface Tool {
 const tools: Tool[] = [
   {
     id: '1',
-    title: 'Fee Calculator',
-    description: 'Calculate management fees, commission, and other charges.',
+    title: 'Calculadora de Tarifas',
+    description: 'Calcula tarifas de administración, comisiones y otros cargos.',
     icon: <DollarSign className="w-6 h-6 text-white" />,
     bgClass: 'bg-mica-teal'
   },
   {
     id: '2',
-    title: 'Product Information',
-    description: 'Learn about Mica\'s products and how they can help your business.',
+    title: 'Información de Productos',
+    description: 'Conoce los productos de Mica y cómo pueden ayudar a tu negocio.',
     icon: <Info className="w-6 h-6 text-white" />,
     bgClass: 'bg-mica-blue'
   },
   {
     id: '3',
-    title: 'Document Templates',
-    description: 'Access ready-to-use templates for leases, agreements, and more.',
+    title: 'Plantillas de Documentos',
+    description: 'Accede a plantillas listas para usar de contratos, acuerdos y más.',
     icon: <FileText className="w-6 h-6 text-white" />,
     bgClass: 'bg-mica-purple'
   }
@@ -41,14 +41,14 @@ const ToolsSection = () => {
 
   const handleOpenTool = (toolName: string) => {
     toast({
-      title: "Opening Tool",
-      description: `${toolName} is opening...`,
+      title: "Abriendo Herramienta",
+      description: `${toolName} se está abriendo...`,
     });
   };
 
   return (
     <section className="mb-10">
-      <h2 className="text-2xl font-bold mb-6">Tools & Resources</h2>
+      <h2 className="text-2xl font-bold mb-6">Herramientas y Recursos</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {tools.map((tool, index) => (
@@ -69,7 +69,7 @@ const ToolsSection = () => {
                 className="text-mica-teal font-medium text-sm flex items-center hover:underline"
                 onClick={() => handleOpenTool(tool.title)}
               >
-                <span>Open Tool</span>
+                <span>Abrir Herramienta</span>
                 <ArrowRight className="w-4 h-4 ml-1" />
               </button>
             </div>
