@@ -23,7 +23,7 @@ const tools: Tool[] = [
   {
     id: '2',
     title: 'Product Information',
-    description: 'Learn about Mica's products and how they can help your business.',
+    description: 'Learn about Mica\'s products and how they can help your business.',
     icon: <Info className="w-6 h-6 text-white" />,
     bgClass: 'bg-mica-blue'
   },
