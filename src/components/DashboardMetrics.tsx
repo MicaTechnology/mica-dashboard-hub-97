@@ -56,8 +56,8 @@ const DashboardMetrics = () => {
   return (
     <section className="mb-10">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Tablero 📊</h2>
-        <div className="text-gray-500 text-sm">Última actualización: Hoy, 9:41 AM ⏰</div>
+        <h2 className="text-2xl font-bold">📊 Tablero</h2>
+        <div className="text-gray-500 text-sm">⏰ Última actualización: Hoy, 9:41 AM</div>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

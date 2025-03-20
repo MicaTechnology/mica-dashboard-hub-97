@@ -35,8 +35,8 @@ const RenewalsTimeline = () => {
   return (
     <section className="mb-10">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Próximas Renovaciones 📅</h2>
-        <button className="text-mica-teal font-medium hover:underline">Ver Calendario 🗓️</button>
+        <h2 className="text-2xl font-bold">📅 Próximas Renovaciones</h2>
+        <button className="text-mica-teal font-medium hover:underline">🗓️ Ver Calendario</button>
       </div>
       
       <Card className="overflow-hidden p-0">
@@ -45,7 +45,7 @@ const RenewalsTimeline = () => {
             <Calendar className="w-4 h-4 mr-2" />
             <span className="text-sm">Próximas renovaciones de contrato</span>
           </div>
-          <p className="text-lg font-medium">{renewals.length} renovaciones en los próximos 60 días ⏳</p>
+          <p className="text-lg font-medium">⏳ {renewals.length} renovaciones en los próximos 60 días</p>
         </div>
         
         <div className="divide-y divide-gray-50">
@@ -77,7 +77,7 @@ const RenewalsTimeline = () => {
                 </div>
                 
                 <button className="mt-2 text-sm text-mica-blue font-medium hover:underline">
-                  Iniciar Renovación 🔄
+                  🔄 Iniciar Renovación
                 </button>
               </div>
             </div>

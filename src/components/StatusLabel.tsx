@@ -38,7 +38,7 @@ const StatusLabel = ({ status, className }: StatusLabelProps) => {
         className
       )}
     >
-      {config.label} {config.emoji}
+      {config.emoji} {config.label}
     </span>
   );
 };

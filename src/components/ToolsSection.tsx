@@ -41,14 +41,14 @@ const ToolsSection = () => {
 
   const handleOpenTool = (toolName: string) => {
     toast({
-      title: "Abriendo Herramienta ⚙️",
+      title: "⚙️ Abriendo Herramienta",
       description: `${toolName} se está abriendo...`,
     });
   };
 
   return (
     <section className="mb-10">
-      <h2 className="text-2xl font-bold mb-6">Herramientas y Recursos 🛠️</h2>
+      <h2 className="text-2xl font-bold mb-6">🛠️ Herramientas y Recursos</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {tools.map((tool, index) => (
@@ -69,7 +69,7 @@ const ToolsSection = () => {
                 className="text-mica-teal font-medium text-sm flex items-center hover:underline"
                 onClick={() => handleOpenTool(tool.title)}
               >
-                <span>Abrir Herramienta</span>
+                <span>🔧 Abrir Herramienta</span>
                 <ArrowRight className="w-4 h-4 ml-1" />
               </button>
             </div>

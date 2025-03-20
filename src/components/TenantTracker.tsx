@@ -44,8 +44,8 @@ const TenantTracker = () => {
   return (
     <section className="mb-10">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Seguimiento de Inquilinos 👥</h2>
-        <button className="text-mica-teal font-medium hover:underline">Ver Todos →</button>
+        <h2 className="text-2xl font-bold">👥 Seguimiento de Inquilinos</h2>
+        <button className="text-mica-teal font-medium hover:underline">👁️ Ver Todos</button>
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -66,7 +66,7 @@ const TenantTracker = () => {
                   <StatusLabel status={tenant.status} className="ml-2" />
                 </div>
                 <p className="text-gray-500 text-sm mb-2 truncate">{tenant.property}</p>
-                {tenant.dueDate && <p className="text-gray-400 text-xs">Fecha límite: {tenant.dueDate} ⏱️</p>}
+                {tenant.dueDate && <p className="text-gray-400 text-xs">⏱️ Fecha límite: {tenant.dueDate}</p>}
               </div>
             </div>
             
@@ -80,7 +80,7 @@ const TenantTracker = () => {
             {tenant.status === 'action-required' && (
               <button className="mt-4 w-full py-2 rounded-lg border border-mica-blue/30 text-mica-blue flex items-center justify-center gap-2 text-sm font-medium hover:bg-mica-blue/5 transition-colors">
                 <PenSquare className="w-4 h-4" />
-                Completar Información Faltante ✍️
+                ✍️ Completar Información Faltante
               </button>
             )}
           </Card>
