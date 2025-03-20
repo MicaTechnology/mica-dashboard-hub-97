@@ -9,18 +9,21 @@ interface StatusLabelProps {
   className?: string;
 }
 
-const statusConfig: Record<Status, { className: string, label: string }> = {
+const statusConfig: Record<Status, { className: string, label: string, emoji: string }> = {
   'pending': {
     className: 'status-pending',
-    label: 'Pendiente'
+    label: 'Pendiente',
+    emoji: '⏳'
   },
   'completed': {
     className: 'status-completed',
-    label: 'Completado'
+    label: 'Completado',
+    emoji: '✅'
   },
   'action-required': {
     className: 'status-action-required',
-    label: 'Acción Requerida'
+    label: 'Acción Requerida',
+    emoji: '⚠️'
   }
 };
 
@@ -35,7 +38,7 @@ const StatusLabel = ({ status, className }: StatusLabelProps) => {
         className
       )}
     >
-      {config.label}
+      {config.label} {config.emoji}
     </span>
   );
 };

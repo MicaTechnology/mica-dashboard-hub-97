@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Card from './Card';
-import { DollarSign, Info, ArrowRight, Calculator, FileText } from 'lucide-react';
+import { DollarSign, Info, ArrowRight, FileText } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface Tool {
@@ -41,14 +41,14 @@ const ToolsSection = () => {
 
   const handleOpenTool = (toolName: string) => {
     toast({
-      title: "Abriendo Herramienta",
+      title: "Abriendo Herramienta ⚙️",
       description: `${toolName} se está abriendo...`,
     });
   };
 
   return (
     <section className="mb-10">
-      <h2 className="text-2xl font-bold mb-6">Herramientas y Recursos</h2>
+      <h2 className="text-2xl font-bold mb-6">Herramientas y Recursos 🛠️</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {tools.map((tool, index) => (
