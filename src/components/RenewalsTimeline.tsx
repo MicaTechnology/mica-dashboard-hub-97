@@ -15,18 +15,18 @@ interface Renewal {
 const renewals: Renewal[] = [
   {
     id: '1',
-    tenant: 'Sarah Johnson',
-    property: '123 Main St, Apt 4B',
-    currentEndDate: 'Sept 30, 2023',
-    renewalDate: 'Oct 1, 2023',
+    tenant: 'Sara Jiménez',
+    property: 'Calle Principal 123, Apto 4B',
+    currentEndDate: '30 Sept, 2023',
+    renewalDate: '1 Oct, 2023',
     daysLeft: 32
   },
   {
     id: '2',
-    tenant: 'Robert Davis',
-    property: '456 Park Ave, Unit 7',
-    currentEndDate: 'Sept 15, 2023',
-    renewalDate: 'Sept 16, 2023',
+    tenant: 'Roberto Díaz',
+    property: 'Av. Parque 456, Unidad 7',
+    currentEndDate: '15 Sept, 2023',
+    renewalDate: '16 Sept, 2023',
     daysLeft: 17
   }
 ];
@@ -35,17 +35,17 @@ const RenewalsTimeline = () => {
   return (
     <section className="mb-10">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Upcoming Renewals</h2>
-        <button className="text-mica-teal font-medium hover:underline">View Calendar</button>
+        <h2 className="text-2xl font-bold">Próximas Renovaciones</h2>
+        <button className="text-mica-teal font-medium hover:underline">Ver Calendario</button>
       </div>
       
       <Card className="overflow-hidden p-0">
         <div className="p-6 border-b border-gray-100">
           <div className="flex items-center text-gray-500 mb-1">
             <Calendar className="w-4 h-4 mr-2" />
-            <span className="text-sm">Upcoming lease renewals</span>
+            <span className="text-sm">Próximas renovaciones de contrato</span>
           </div>
-          <p className="text-lg font-medium">{renewals.length} renewals in the next 60 days</p>
+          <p className="text-lg font-medium">{renewals.length} renovaciones en los próximos 60 días</p>
         </div>
         
         <div className="divide-y divide-gray-50">
@@ -77,7 +77,7 @@ const RenewalsTimeline = () => {
                 </div>
                 
                 <button className="mt-2 text-sm text-mica-blue font-medium hover:underline">
-                  Start Renewal
+                  Iniciar Renovación
                 </button>
               </div>
             </div>

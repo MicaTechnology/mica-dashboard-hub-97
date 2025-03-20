@@ -15,7 +15,7 @@ interface Metric {
 
 const metrics: Metric[] = [
   {
-    title: 'Total Properties',
+    title: 'Total de Propiedades',
     value: '24',
     change: {
       value: '+12%',
@@ -24,7 +24,7 @@ const metrics: Metric[] = [
     icon: <Home className="w-5 h-5 text-mica-teal" />
   },
   {
-    title: 'Active Tenants',
+    title: 'Inquilinos Activos',
     value: '42',
     change: {
       value: '+8%',
@@ -33,7 +33,7 @@ const metrics: Metric[] = [
     icon: <Users className="w-5 h-5 text-mica-blue" />
   },
   {
-    title: 'Monthly Revenue',
+    title: 'Ingresos Mensuales',
     value: '$38,500',
     change: {
       value: '+24%',
@@ -42,7 +42,7 @@ const metrics: Metric[] = [
     icon: <DollarSign className="w-5 h-5 text-green-500" />
   },
   {
-    title: 'Vacant Units',
+    title: 'Unidades Vacantes',
     value: '3',
     change: {
       value: '-25%',
@@ -56,8 +56,8 @@ const DashboardMetrics = () => {
   return (
     <section className="mb-10">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Dashboard</h2>
-        <div className="text-gray-500 text-sm">Last updated: Today, 9:41 AM</div>
+        <h2 className="text-2xl font-bold">Tablero</h2>
+        <div className="text-gray-500 text-sm">Última actualización: Hoy, 9:41 AM</div>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

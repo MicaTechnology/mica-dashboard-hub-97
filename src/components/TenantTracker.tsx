@@ -17,24 +17,24 @@ interface Tenant {
 const tenants: Tenant[] = [
   {
     id: '1',
-    name: 'John Smith',
-    property: '123 Main St, Apt 4B',
+    name: 'Juan Pérez',
+    property: 'Calle Principal 123, Apto 4B',
     progress: 75,
     status: 'pending',
-    dueDate: 'Aug 15, 2023'
+    dueDate: '15 Ago, 2023'
   },
   {
     id: '2',
-    name: 'Emily Johnson',
-    property: '456 Park Ave, Unit 7',
+    name: 'María García',
+    property: 'Av. Parque 456, Unidad 7',
     progress: 30,
     status: 'action-required',
-    dueDate: 'Aug 10, 2023'
+    dueDate: '10 Ago, 2023'
   },
   {
     id: '3',
-    name: 'Michael Williams',
-    property: '789 Broadway, Apt 12C',
+    name: 'Miguel Rodríguez',
+    property: 'Blvd. Central 789, Apto 12C',
     progress: 100,
     status: 'completed'
   }
@@ -44,8 +44,8 @@ const TenantTracker = () => {
   return (
     <section className="mb-10">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Tenant Tracker</h2>
-        <button className="text-mica-teal font-medium hover:underline">View All</button>
+        <h2 className="text-2xl font-bold">Seguimiento de Inquilinos</h2>
+        <button className="text-mica-teal font-medium hover:underline">Ver Todos</button>
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -66,7 +66,7 @@ const TenantTracker = () => {
                   <StatusLabel status={tenant.status} className="ml-2" />
                 </div>
                 <p className="text-gray-500 text-sm mb-2 truncate">{tenant.property}</p>
-                {tenant.dueDate && <p className="text-gray-400 text-xs">Due: {tenant.dueDate}</p>}
+                {tenant.dueDate && <p className="text-gray-400 text-xs">Fecha límite: {tenant.dueDate}</p>}
               </div>
             </div>
             
@@ -74,13 +74,13 @@ const TenantTracker = () => {
               value={tenant.progress} 
               max={100} 
               color={tenant.status === 'action-required' ? 'blue' : 'teal'} 
-              label="Application Progress"
+              label="Progreso de Solicitud"
             />
             
             {tenant.status === 'action-required' && (
               <button className="mt-4 w-full py-2 rounded-lg border border-mica-blue/30 text-mica-blue flex items-center justify-center gap-2 text-sm font-medium hover:bg-mica-blue/5 transition-colors">
                 <PenSquare className="w-4 h-4" />
-                Complete Missing Info
+                Completar Información Faltante
               </button>
             )}
           </Card>

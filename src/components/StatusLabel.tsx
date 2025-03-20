@@ -12,15 +12,15 @@ interface StatusLabelProps {
 const statusConfig: Record<Status, { className: string, label: string }> = {
   'pending': {
     className: 'status-pending',
-    label: 'Pending'
+    label: 'Pendiente'
   },
   'completed': {
     className: 'status-completed',
-    label: 'Completed'
+    label: 'Completado'
   },
   'action-required': {
     className: 'status-action-required',
-    label: 'Action Required'
+    label: 'Acción Requerida'
   }
 };
 
