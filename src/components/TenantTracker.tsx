@@ -80,13 +80,21 @@ const TenantTracker = () => {
             
             <div className="mt-4 flex flex-col gap-2">
               {tenant.status === 'action-required' && (
-                <Button 
-                  variant="outline" 
-                  className="w-full py-2 text-mica-blue border-mica-blue/30 hover:bg-mica-blue/5"
-                >
-                  <PenSquare className="w-4 h-4 mr-2" />
-                  Completar Información Faltante
-                </Button>
+                <div className="flex gap-2">
+                  <Button 
+                    variant="outline" 
+                    className="flex-1 py-2 text-mica-blue border-mica-blue/30 hover:bg-mica-blue/5"
+                  >
+                    <PenSquare className="w-4 h-4 mr-2" />
+                    Llenar Información de Contrato
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    className="py-2 text-gray-700 border-gray-300 hover:bg-gray-100"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </Button>
+                </div>
               )}
               
               {tenant.status === 'completed' && (
@@ -99,7 +107,6 @@ const TenantTracker = () => {
                 </Button>
               )}
               
-              {/* Podemos añadir botones adicionales según sea necesario para cualquier estado */}
               {tenant.status === 'pending' && (
                 <Button 
                   variant="outline" 
