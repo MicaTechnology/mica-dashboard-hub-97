@@ -90,9 +90,10 @@ const TenantTracker = () => {
                   </Button>
                   <Button 
                     variant="outline" 
-                    className="py-2 text-gray-700 border-gray-300 hover:bg-gray-100"
+                    className="flex-1 py-2 text-gray-700 border-gray-300 hover:bg-gray-100"
                   >
-                    <Eye className="w-4 h-4" />
+                    <Eye className="w-4 h-4 mr-2" />
+                    Ver Detalles
                   </Button>
                 </div>
               )}
