@@ -14,13 +14,13 @@ const Index = () => {
         <header className="bg-white border-b border-gray-100 sticky top-0 z-10 shadow-sm subtle-glass">
           <div className="container mx-auto px-6 py-4 flex items-center justify-between">
             <div className="flex items-center">
-              <div className="font-bold text-2xl text-mica-teal">✨ mica</div>
+              <div className="font-bold text-2xl text-mica-teal">mica</div>
               <span className="text-gray-400 mx-4">|</span>
               <nav className="hidden md:flex items-center space-x-6">
-                <a href="#" className="text-gray-900 font-medium">📊 Tablero</a>
-                <a href="#" className="text-gray-500 hover:text-gray-900 transition-colors">🏠 Propiedades</a>
-                <a href="#" className="text-gray-500 hover:text-gray-900 transition-colors">👤 Inquilinos</a>
-                <a href="#" className="text-gray-500 hover:text-gray-900 transition-colors">📄 Documentos</a>
+                <a href="#" className="text-gray-900 font-medium">Tablero</a>
+                <a href="#" className="text-gray-500 hover:text-gray-900 transition-colors">Propiedades</a>
+                <a href="#" className="text-gray-500 hover:text-gray-900 transition-colors">Inquilinos</a>
+                <a href="#" className="text-gray-500 hover:text-gray-900 transition-colors">Documentos</a>
               </nav>
             </div>
             

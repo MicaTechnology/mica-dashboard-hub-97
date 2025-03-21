@@ -3,7 +3,8 @@ import React from 'react';
 import Card from './Card';
 import Progress from './Progress';
 import StatusLabel from './StatusLabel';
-import { User, PenSquare } from 'lucide-react';
+import { User, PenSquare, Eye } from 'lucide-react';
+import { Button } from './ui/button';
 
 interface Tenant {
   id: string;
@@ -44,8 +45,8 @@ const TenantTracker = () => {
   return (
     <section className="mb-10">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">👥 Seguimiento de Inquilinos</h2>
-        <button className="text-mica-teal font-medium hover:underline">👁️ Ver Todos</button>
+        <h2 className="text-2xl font-bold">Seguimiento de Inquilinos</h2>
+        <button className="text-mica-teal font-medium hover:underline">Ver Todos</button>
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -66,7 +67,7 @@ const TenantTracker = () => {
                   <StatusLabel status={tenant.status} className="ml-2" />
                 </div>
                 <p className="text-gray-500 text-sm mb-2 truncate">{tenant.property}</p>
-                {tenant.dueDate && <p className="text-gray-400 text-xs">⏱️ Fecha límite: {tenant.dueDate}</p>}
+                {tenant.dueDate && <p className="text-gray-400 text-xs">Fecha límite: {tenant.dueDate}</p>}
               </div>
             </div>
             
@@ -77,12 +78,38 @@ const TenantTracker = () => {
               label="Progreso de Solicitud"
             />
             
-            {tenant.status === 'action-required' && (
-              <button className="mt-4 w-full py-2 rounded-lg border border-mica-blue/30 text-mica-blue flex items-center justify-center gap-2 text-sm font-medium hover:bg-mica-blue/5 transition-colors">
-                <PenSquare className="w-4 h-4" />
-                ✍️ Completar Información Faltante
-              </button>
-            )}
+            <div className="mt-4 flex flex-col gap-2">
+              {tenant.status === 'action-required' && (
+                <Button 
+                  variant="outline" 
+                  className="w-full py-2 text-mica-blue border-mica-blue/30 hover:bg-mica-blue/5"
+                >
+                  <PenSquare className="w-4 h-4 mr-2" />
+                  Completar Información Faltante
+                </Button>
+              )}
+              
+              {tenant.status === 'completed' && (
+                <Button 
+                  variant="outline" 
+                  className="w-full py-2 text-mica-teal border-mica-teal/30 hover:bg-mica-teal/5"
+                >
+                  <Eye className="w-4 h-4 mr-2" />
+                  Ver Detalles
+                </Button>
+              )}
+              
+              {/* Podemos añadir botones adicionales según sea necesario para cualquier estado */}
+              {tenant.status === 'pending' && (
+                <Button 
+                  variant="outline" 
+                  className="w-full py-2 text-gray-700 border-gray-300 hover:bg-gray-100"
+                >
+                  <Eye className="w-4 h-4 mr-2" />
+                  Ver Detalles
+                </Button>
+              )}
+            </div>
           </Card>
         ))}
       </div>
