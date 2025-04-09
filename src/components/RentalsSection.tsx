@@ -3,7 +3,8 @@ import React from 'react';
 import Card from './Card';
 import Progress from './Progress';
 import StatusLabel from './StatusLabel';
-import { User } from 'lucide-react';
+import { User, LifeBuoy } from 'lucide-react';
+import { Button } from './ui/button';
 
 interface Tenant {
   id: string;
@@ -79,6 +80,15 @@ const RentalsSection = () => {
                   <span className="text-gray-400">Inicio:</span>
                   <span>{tenant.startDate}</span>
                 </div>
+                
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="mt-4 w-full text-mica-blue border-mica-blue hover:bg-mica-blue hover:text-white transition-colors"
+                >
+                  <LifeBuoy className="w-4 h-4 mr-2" />
+                  Necesito ayuda
+                </Button>
               </div>
             </div>
           </Card>

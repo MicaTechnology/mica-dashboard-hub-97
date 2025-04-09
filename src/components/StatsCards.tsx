@@ -1,20 +1,22 @@
 
 import React from 'react';
-import Card from './Card';
-import { FileText, FileCheck, Building } from 'lucide-react';
+import { FileText, FileCheck, Building, ArrowUpRight } from 'lucide-react';
 
 interface StatCardProps {
   icon: React.ReactNode;
   value: string;
   label: string;
+  color: string;
   className?: string;
 }
 
-const StatCard = ({ icon, value, label, className }: StatCardProps) => {
+const StatCard = ({ icon, value, label, color, className }: StatCardProps) => {
   return (
-    <div className={`bg-gray-50 p-6 rounded-xl ${className}`}>
-      <div className="flex justify-between mb-3">
-        {icon}
+    <div className={`relative bg-white p-6 rounded-xl border border-gray-100 shadow-sm overflow-hidden ${className}`}>
+      <div className="flex justify-between mb-3 relative z-10">
+        <div className={`p-2 rounded-lg ${color}`}>
+          {icon}
+        </div>
         <button className="text-gray-400 hover:text-gray-600">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
             <circle cx="12" cy="7" r="1" stroke="none" fill="currentColor" />
@@ -23,10 +25,14 @@ const StatCard = ({ icon, value, label, className }: StatCardProps) => {
           </svg>
         </button>
       </div>
-      <div className="mt-4">
-        <h2 className="text-3xl font-bold">{value}</h2>
+      <div className="mt-4 relative z-10">
+        <h2 className="text-3xl font-bold flex items-center gap-2">
+          {value}
+          <ArrowUpRight className="w-4 h-4 text-green-500" />
+        </h2>
         <p className="text-gray-600 mt-1">{label}</p>
       </div>
+      <div className={`absolute -right-6 -top-6 w-24 h-24 rounded-full opacity-10 ${color.replace('text', 'bg')}`}></div>
     </div>
   );
 };
@@ -35,19 +41,22 @@ const StatsCards = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
       <StatCard 
-        icon={<FileText className="w-6 h-6 text-mica-teal" />}
+        icon={<FileText className="w-5 h-5 text-white" />}
         value="12"
         label="Investigaciones"
+        color="bg-mica-teal text-white"
       />
       <StatCard 
-        icon={<FileCheck className="w-6 h-6 text-mica-blue" />}
+        icon={<FileCheck className="w-5 h-5 text-white" />}
         value="5"
         label="Contratos en proceso"
+        color="bg-mica-blue text-white"
       />
       <StatCard 
-        icon={<Building className="w-6 h-6 text-green-600" />}
+        icon={<Building className="w-5 h-5 text-white" />}
         value="24"
         label="Rentas activas"
+        color="bg-green-600 text-white"
       />
     </div>
   );
