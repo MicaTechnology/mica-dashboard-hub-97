@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Card from './Card';
 import Progress from './Progress';
@@ -21,7 +22,7 @@ const tenants: Tenant[] = [
     id: '1',
     name: 'Juan Pérez',
     property: 'Calle Principal 123, Apto 4B',
-    progress: 75,
+    progress: 66, // Updated based on status
     status: 'investigation-in-progress',
     dueDate: '15 Ago, 2023'
   },
@@ -29,7 +30,7 @@ const tenants: Tenant[] = [
     id: '2',
     name: 'María García',
     property: 'Av. Parque 456, Unidad 7',
-    progress: 30,
+    progress: 33, // Updated based on status
     status: 'form-incomplete',
     dueDate: '10 Ago, 2023'
   },
@@ -37,7 +38,7 @@ const tenants: Tenant[] = [
     id: '3',
     name: 'Miguel Rodríguez',
     property: 'Blvd. Central 789, Apto 12C',
-    progress: 100,
+    progress: 100, // Updated based on status
     status: 'approved'
   }
 ];
@@ -48,7 +49,7 @@ const allTenants: Tenant[] = [
     id: '4',
     name: 'Laura Sánchez',
     property: 'Calle Olmo 234, Casa 5',
-    progress: 100,
+    progress: 100, // Updated based on status
     status: 'denied',
     dueDate: '20 Ago, 2023'
   },
@@ -56,15 +57,30 @@ const allTenants: Tenant[] = [
     id: '5',
     name: 'Roberto Gómez',
     property: 'Av. Principal 567, Apto 9D',
-    progress: 60,
+    progress: 66, // Updated based on status
     status: 'investigation-in-progress',
     dueDate: '25 Ago, 2023'
   }
 ];
 
+// Helper function to get progress by status
+const getProgressByStatus = (status: Tenant['status']): number => {
+  switch (status) {
+    case 'form-incomplete':
+      return 33;
+    case 'investigation-in-progress':
+      return 66;
+    case 'approved':
+    case 'denied':
+      return 100;
+    default:
+      return 0;
+  }
+};
+
 const TenantTracker = () => {
   return (
-    <section className="mb-10">
+    <section className="mb-10" id="investigaciones">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Investigaciones</h2>
         <Sheet>
@@ -96,7 +112,7 @@ const TenantTracker = () => {
                       <TableCell><StatusLabel status={tenant.status} /></TableCell>
                       <TableCell>
                         <Progress 
-                          value={tenant.progress} 
+                          value={getProgressByStatus(tenant.status)} 
                           max={100} 
                           color={tenant.status === 'form-incomplete' ? 'blue' : 'teal'} 
                         />
@@ -133,7 +149,7 @@ const TenantTracker = () => {
             </div>
             
             <Progress 
-              value={tenant.progress} 
+              value={getProgressByStatus(tenant.status)} 
               max={100} 
               color={tenant.status === 'form-incomplete' ? 'blue' : 'teal'} 
               label="Progreso de Solicitud" 

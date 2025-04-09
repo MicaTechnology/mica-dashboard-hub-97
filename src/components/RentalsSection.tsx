@@ -5,13 +5,14 @@ import { User, LifeBuoy } from 'lucide-react';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import StatusLabel from './StatusLabel';
 
 interface Tenant {
   id: string;
   name: string;
   property: string;
   progress: number;
-  status: 'pending' | 'completed' | 'action-required';
+  status: 'active' | 'pending-first-payment' | 'contract-in-progress' | 'completed' | 'renewal-soon';
   monthlyRent: string;
   startDate: string;
 }
@@ -22,7 +23,7 @@ const rentalTenants: Tenant[] = [
     name: 'Carlos Mendoza',
     property: 'Av. Las Palmas 567, Casa 3',
     progress: 100,
-    status: 'completed',
+    status: 'active',
     monthlyRent: '$12,500',
     startDate: '1 Jun, 2023'
   },
@@ -31,7 +32,7 @@ const rentalTenants: Tenant[] = [
     name: 'Ana Pérez',
     property: 'Calle Roble 234, Apto 8A',
     progress: 100,
-    status: 'completed',
+    status: 'renewal-soon',
     monthlyRent: '$9,800', 
     startDate: '15 May, 2023'
   },
@@ -40,7 +41,7 @@ const rentalTenants: Tenant[] = [
     name: 'Luis Hernández',
     property: 'Av. Del Mar 456, Unidad 12',
     progress: 100,
-    status: 'completed',
+    status: 'pending-first-payment',
     monthlyRent: '$14,300',
     startDate: '1 Mar, 2023'
   }
@@ -54,7 +55,7 @@ const allRentalTenants: Tenant[] = [
     name: 'Sofia Ramírez',
     property: 'Blvd. Los Pinos 789, Apto 15F',
     progress: 100,
-    status: 'completed',
+    status: 'contract-in-progress',
     monthlyRent: '$11,200',
     startDate: '15 Apr, 2023'
   },
@@ -71,7 +72,7 @@ const allRentalTenants: Tenant[] = [
 
 const RentalsSection = () => {
   return (
-    <section className="mb-10">
+    <section className="mb-10" id="rentas">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Rentas</h2>
         <Sheet>
@@ -87,8 +88,8 @@ const RentalsSection = () => {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Nombre</TableHead>
+                    <TableHead>Estado</TableHead>
                     <TableHead>Renta</TableHead>
-                    <TableHead>Inicio</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -100,8 +101,8 @@ const RentalsSection = () => {
                           <div className="text-xs text-gray-500 truncate">{tenant.property}</div>
                         </div>
                       </TableCell>
+                      <TableCell><StatusLabel status={tenant.status} /></TableCell>
                       <TableCell>{tenant.monthlyRent}</TableCell>
-                      <TableCell>{tenant.startDate}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -126,7 +127,7 @@ const RentalsSection = () => {
               <div className="flex-1 min-w-0">
                 <div className="flex justify-between items-start mb-1">
                   <h3 className="text-lg font-medium truncate">{tenant.name}</h3>
-                  <div className="bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-xs font-medium">Activo</div>
+                  <StatusLabel status={tenant.status} />
                 </div>
                 <p className="text-gray-500 text-sm mb-2 truncate">{tenant.property}</p>
                 <div className="flex justify-between text-sm">

@@ -2,7 +2,11 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-type Status = 'pending' | 'completed' | 'action-required' | 'form-incomplete' | 'investigation-in-progress' | 'approved' | 'denied';
+type Status = 
+  // Investigation statuses
+  'form-incomplete' | 'investigation-in-progress' | 'approved' | 'denied' |
+  // Rental statuses
+  'active' | 'pending-first-payment' | 'contract-in-progress' | 'completed' | 'renewal-soon';
 
 interface StatusLabelProps {
   status: Status;
@@ -10,18 +14,7 @@ interface StatusLabelProps {
 }
 
 const statusConfig: Record<Status, { className: string, label: string }> = {
-  'pending': {
-    className: 'bg-amber-100 text-amber-800',
-    label: 'Pendiente'
-  },
-  'completed': {
-    className: 'bg-green-100 text-green-800',
-    label: 'Completado'
-  },
-  'action-required': {
-    className: 'bg-blue-100 text-blue-800',
-    label: 'Acción Requerida'
-  },
+  // Investigation statuses
   'form-incomplete': {
     className: 'bg-amber-100 text-amber-800',
     label: 'Formulario incompleto'
@@ -37,6 +30,28 @@ const statusConfig: Record<Status, { className: string, label: string }> = {
   'denied': {
     className: 'bg-red-100 text-red-800',
     label: 'Denegado'
+  },
+  
+  // Rental statuses
+  'active': {
+    className: 'bg-green-100 text-green-800',
+    label: 'Activo'
+  },
+  'pending-first-payment': {
+    className: 'bg-amber-100 text-amber-800',
+    label: 'Primer pago pendiente'
+  },
+  'contract-in-progress': {
+    className: 'bg-blue-100 text-blue-800',
+    label: 'Contrato en elaboración'
+  },
+  'completed': {
+    className: 'bg-gray-100 text-gray-800',
+    label: 'Finalizado'
+  },
+  'renewal-soon': {
+    className: 'bg-purple-100 text-purple-800',
+    label: 'Próximo a renovación'
   }
 };
 
