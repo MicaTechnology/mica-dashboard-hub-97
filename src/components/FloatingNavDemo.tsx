@@ -1,33 +1,70 @@
 
 "use client"
 
-import React from "react"
+import React, { useEffect } from "react"
 import { FloatingNav } from "@/components/ui/floating-navbar"
-import { Home, MessageSquare, User, BarChart2, FileText, Building } from "lucide-react"
+import { Home, FileText, Building, Wrench, User } from "lucide-react"
+import { Link } from "react-router-dom"
 
 export function FloatingNavDemo() {
   const navItems = [
     {
       name: "Dashboard",
-      link: "/",
+      link: "#top",
       icon: <Home className="h-4 w-4 text-neutral-500 dark:text-white" />,
+      scrollTo: "top"
     },
     {
       name: "Investigaciones",
-      link: "/investigaciones",
+      link: "#investigaciones",
       icon: <FileText className="h-4 w-4 text-neutral-500 dark:text-white" />,
+      scrollTo: "investigaciones"
     },
     {
       name: "Rentas",
-      link: "/rentas",
+      link: "#rentas",
       icon: <Building className="h-4 w-4 text-neutral-500 dark:text-white" />,
+      scrollTo: "rentas"
     },
     {
-      name: "Reportes",
-      link: "/reportes",
-      icon: <BarChart2 className="h-4 w-4 text-neutral-500 dark:text-white" />,
+      name: "Herramientas y Recursos",
+      link: "#herramientas",
+      icon: <Wrench className="h-4 w-4 text-neutral-500 dark:text-white" />,
+      scrollTo: "herramientas" 
     },
   ]
+
+  // Add IDs to sections for smooth scrolling
+  useEffect(() => {
+    const addSectionIds = () => {
+      // Add ID for top of page
+      document.body.id = "top";
+      
+      // Find the TenantTracker section and add ID
+      const investigacionesSection = document.querySelector('h2.text-2xl.font-bold:contains("Investigaciones")');
+      if (investigacionesSection) {
+        const parentSection = investigacionesSection.closest('section');
+        if (parentSection) parentSection.id = "investigaciones";
+      }
+      
+      // Find the Rentals section and add ID
+      const rentasSection = document.querySelector('h2:contains("Propiedades en Renta")');
+      if (rentasSection) {
+        const parentSection = rentasSection.closest('section');
+        if (parentSection) parentSection.id = "rentas";
+      }
+      
+      // Find the Tools section and add ID
+      const herramientasSection = document.querySelector('h2:contains("Herramientas y Recursos")');
+      if (herramientasSection) {
+        const parentSection = herramientasSection.closest('section');
+        if (parentSection) parentSection.id = "herramientas";
+      }
+    };
+    
+    // Run after DOM is fully loaded
+    setTimeout(addSectionIds, 500);
+  }, []);
 
   return (
     <FloatingNav navItems={navItems} />
