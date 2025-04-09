@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Shield, ClipboardCheck } from 'lucide-react';
+import { Shield } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -18,15 +18,10 @@ const Hero = () => {
         </p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
         <button className="cta-primary group">
           <Shield className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
-          <span>Iniciar Protección de Renta</span>
-        </button>
-        
-        <button className="cta-secondary group">
-          <ClipboardCheck className="w-5 h-5 text-mica-teal transition-transform duration-300 group-hover:scale-110" />
-          <span className="text-gray-700">Comenzar Investigación de Inquilino</span>
+          <span>Compartir link de Investigación</span>
         </button>
       </div>
     </section>
