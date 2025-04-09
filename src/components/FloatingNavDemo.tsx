@@ -4,7 +4,6 @@
 import React, { useEffect } from "react"
 import { FloatingNav } from "@/components/ui/floating-navbar"
 import { Home, FileText, Building, Wrench } from "lucide-react"
-import { Link } from "react-router-dom"
 
 export function FloatingNavDemo() {
   const navItems = [

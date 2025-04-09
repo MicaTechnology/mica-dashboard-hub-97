@@ -155,7 +155,7 @@ const TenantTracker = () => {
               label="Progreso de Solicitud" 
             />
             
-            {tenant.status === 'form-incomplete' && (
+            {tenant.status === 'approved' && (
               <div className="mt-4">
                 <Button variant="outline" className="w-full py-2 text-mica-blue border-mica-blue/30 hover:bg-mica-blue/5">
                   <PenSquare className="w-4 h-4 mr-2" />
