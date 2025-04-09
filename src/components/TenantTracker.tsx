@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Card from './Card';
 import Progress from './Progress';
@@ -43,7 +42,6 @@ const tenants: Tenant[] = [
   }
 ];
 
-// Additional tenants for the full list view
 const allTenants: Tenant[] = [
   ...tenants,
   {
@@ -101,7 +99,6 @@ const TenantTracker = () => {
                           value={tenant.progress} 
                           max={100} 
                           color={tenant.status === 'form-incomplete' ? 'blue' : 'teal'} 
-                          showLabel={false}
                         />
                       </TableCell>
                     </TableRow>
