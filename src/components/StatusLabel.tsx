@@ -61,7 +61,7 @@ const StatusLabel = ({ status, className }: StatusLabelProps) => {
   return (
     <span 
       className={cn(
-        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium', 
+        'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium whitespace-normal break-words min-w-0 max-w-full', 
         config.className,
         className
       )}

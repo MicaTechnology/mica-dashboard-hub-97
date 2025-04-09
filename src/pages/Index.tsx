@@ -13,7 +13,7 @@ const Index = () => {
     <PageTransition>
       <div className="min-h-screen bg-gray-50">
         <FloatingNavDemo />
-        <main className="container mx-auto px-6 py-10">
+        <main className="container mx-auto px-6 pt-24 pb-10"> {/* Added more top padding (pt-24) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-8 items-start">
             <Hero />
             <StatsCards />
