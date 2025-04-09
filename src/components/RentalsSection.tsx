@@ -1,10 +1,10 @@
 
 import React from 'react';
 import Card from './Card';
-import Progress from './Progress';
-import StatusLabel from './StatusLabel';
 import { User, LifeBuoy } from 'lucide-react';
 import { Button } from './ui/button';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 interface Tenant {
   id: string;
@@ -46,12 +46,69 @@ const rentalTenants: Tenant[] = [
   }
 ];
 
+// Additional tenants for the full list view
+const allRentalTenants: Tenant[] = [
+  ...rentalTenants,
+  {
+    id: '4',
+    name: 'Sofia Ramírez',
+    property: 'Blvd. Los Pinos 789, Apto 15F',
+    progress: 100,
+    status: 'completed',
+    monthlyRent: '$11,200',
+    startDate: '15 Apr, 2023'
+  },
+  {
+    id: '5',
+    name: 'Eduardo Torres',
+    property: 'Av. Central 123, Unidad 7',
+    progress: 100,
+    status: 'completed',
+    monthlyRent: '$10,600',
+    startDate: '1 Feb, 2023'
+  }
+];
+
 const RentalsSection = () => {
   return (
     <section className="mb-10">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Rentas</h2>
-        <button className="text-mica-teal font-medium hover:underline">Ver Todos</button>
+        <Sheet>
+          <SheetTrigger asChild>
+            <button className="text-mica-teal font-medium hover:underline">Ver Todos</button>
+          </SheetTrigger>
+          <SheetContent className="w-[90%] sm:w-[540px] sm:max-w-md overflow-y-auto">
+            <SheetHeader>
+              <SheetTitle>Todas las Rentas</SheetTitle>
+            </SheetHeader>
+            <div className="mt-6">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Nombre</TableHead>
+                    <TableHead>Renta</TableHead>
+                    <TableHead>Inicio</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {allRentalTenants.map((tenant) => (
+                    <TableRow key={tenant.id}>
+                      <TableCell className="font-medium">
+                        <div>
+                          <div>{tenant.name}</div>
+                          <div className="text-xs text-gray-500 truncate">{tenant.property}</div>
+                        </div>
+                      </TableCell>
+                      <TableCell>{tenant.monthlyRent}</TableCell>
+                      <TableCell>{tenant.startDate}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

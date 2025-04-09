@@ -5,13 +5,15 @@ import Progress from './Progress';
 import StatusLabel from './StatusLabel';
 import { User, PenSquare } from 'lucide-react';
 import { Button } from './ui/button';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 interface Tenant {
   id: string;
   name: string;
   property: string;
   progress: number;
-  status: 'pending' | 'completed' | 'action-required';
+  status: 'form-incomplete' | 'investigation-in-progress' | 'approved' | 'denied';
   dueDate?: string;
 }
 
@@ -21,7 +23,7 @@ const tenants: Tenant[] = [
     name: 'Juan Pérez',
     property: 'Calle Principal 123, Apto 4B',
     progress: 75,
-    status: 'pending',
+    status: 'investigation-in-progress',
     dueDate: '15 Ago, 2023'
   },
   {
@@ -29,7 +31,7 @@ const tenants: Tenant[] = [
     name: 'María García',
     property: 'Av. Parque 456, Unidad 7',
     progress: 30,
-    status: 'action-required',
+    status: 'form-incomplete',
     dueDate: '10 Ago, 2023'
   },
   {
@@ -37,7 +39,28 @@ const tenants: Tenant[] = [
     name: 'Miguel Rodríguez',
     property: 'Blvd. Central 789, Apto 12C',
     progress: 100,
-    status: 'completed'
+    status: 'approved'
+  }
+];
+
+// Additional tenants for the full list view
+const allTenants: Tenant[] = [
+  ...tenants,
+  {
+    id: '4',
+    name: 'Laura Sánchez',
+    property: 'Calle Olmo 234, Casa 5',
+    progress: 100,
+    status: 'denied',
+    dueDate: '20 Ago, 2023'
+  },
+  {
+    id: '5',
+    name: 'Roberto Gómez',
+    property: 'Av. Principal 567, Apto 9D',
+    progress: 60,
+    status: 'investigation-in-progress',
+    dueDate: '25 Ago, 2023'
   }
 ];
 
@@ -46,7 +69,48 @@ const TenantTracker = () => {
     <section className="mb-10">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Investigaciones</h2>
-        <button className="text-mica-teal font-medium hover:underline">Ver Todos</button>
+        <Sheet>
+          <SheetTrigger asChild>
+            <button className="text-mica-teal font-medium hover:underline">Ver Todos</button>
+          </SheetTrigger>
+          <SheetContent className="w-[90%] sm:w-[540px] sm:max-w-md overflow-y-auto">
+            <SheetHeader>
+              <SheetTitle>Todas las Investigaciones</SheetTitle>
+            </SheetHeader>
+            <div className="mt-6">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Nombre</TableHead>
+                    <TableHead>Estado</TableHead>
+                    <TableHead>Progreso</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {allTenants.map((tenant) => (
+                    <TableRow key={tenant.id}>
+                      <TableCell className="font-medium">
+                        <div>
+                          <div>{tenant.name}</div>
+                          <div className="text-xs text-gray-500 truncate">{tenant.property}</div>
+                        </div>
+                      </TableCell>
+                      <TableCell><StatusLabel status={tenant.status} /></TableCell>
+                      <TableCell>
+                        <Progress 
+                          value={tenant.progress} 
+                          max={100} 
+                          color={tenant.status === 'form-incomplete' ? 'blue' : 'teal'} 
+                          showLabel={false}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -74,11 +138,11 @@ const TenantTracker = () => {
             <Progress 
               value={tenant.progress} 
               max={100} 
-              color={tenant.status === 'action-required' ? 'blue' : 'teal'} 
+              color={tenant.status === 'form-incomplete' ? 'blue' : 'teal'} 
               label="Progreso de Solicitud" 
             />
             
-            {tenant.status === 'action-required' && (
+            {tenant.status === 'form-incomplete' && (
               <div className="mt-4">
                 <Button variant="outline" className="w-full py-2 text-mica-blue border-mica-blue/30 hover:bg-mica-blue/5">
                   <PenSquare className="w-4 h-4 mr-2" />
