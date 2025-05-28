@@ -3,10 +3,11 @@ import React from 'react';
 import Card from './Card';
 import Progress from './Progress';
 import StatusLabel from './StatusLabel';
-import { User, PenSquare } from 'lucide-react';
+import { User, PenSquare, ExternalLink, Share2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { useToast } from '@/hooks/use-toast';
 
 interface Tenant {
   id: string;
@@ -15,6 +16,8 @@ interface Tenant {
   progress: number;
   status: 'form-incomplete' | 'investigation-in-progress' | 'approved' | 'denied';
   dueDate?: string;
+  driveUrl?: string;
+  clientFormUrl?: string;
 }
 
 const tenants: Tenant[] = [
@@ -22,24 +25,30 @@ const tenants: Tenant[] = [
     id: '1',
     name: 'Juan Pérez',
     property: 'Calle Principal 123, Apto 4B',
-    progress: 66, // Updated based on status
+    progress: 66,
     status: 'investigation-in-progress',
-    dueDate: '15 Ago, 2023'
+    dueDate: '15 Ago, 2023',
+    driveUrl: 'https://drive.google.com/drive/folders/example1',
+    clientFormUrl: 'https://app.ejemplo.com/form/juan-perez-123'
   },
   {
     id: '2',
     name: 'María García',
     property: 'Av. Parque 456, Unidad 7',
-    progress: 33, // Updated based on status
+    progress: 33,
     status: 'form-incomplete',
-    dueDate: '10 Ago, 2023'
+    dueDate: '10 Ago, 2023',
+    driveUrl: 'https://drive.google.com/drive/folders/example2',
+    clientFormUrl: 'https://app.ejemplo.com/form/maria-garcia-456'
   },
   {
     id: '3',
     name: 'Miguel Rodríguez',
     property: 'Blvd. Central 789, Apto 12C',
-    progress: 100, // Updated based on status
-    status: 'approved'
+    progress: 100,
+    status: 'approved',
+    driveUrl: 'https://drive.google.com/drive/folders/example3',
+    clientFormUrl: 'https://app.ejemplo.com/form/miguel-rodriguez-789'
   }
 ];
 
@@ -49,17 +58,21 @@ const allTenants: Tenant[] = [
     id: '4',
     name: 'Laura Sánchez',
     property: 'Calle Olmo 234, Casa 5',
-    progress: 100, // Updated based on status
+    progress: 100,
     status: 'denied',
-    dueDate: '20 Ago, 2023'
+    dueDate: '20 Ago, 2023',
+    driveUrl: 'https://drive.google.com/drive/folders/example4',
+    clientFormUrl: 'https://app.ejemplo.com/form/laura-sanchez-234'
   },
   {
     id: '5',
     name: 'Roberto Gómez',
     property: 'Av. Principal 567, Apto 9D',
-    progress: 66, // Updated based on status
+    progress: 66,
     status: 'investigation-in-progress',
-    dueDate: '25 Ago, 2023'
+    dueDate: '25 Ago, 2023',
+    driveUrl: 'https://drive.google.com/drive/folders/example5',
+    clientFormUrl: 'https://app.ejemplo.com/form/roberto-gomez-567'
   }
 ];
 
@@ -79,6 +92,31 @@ const getProgressByStatus = (status: Tenant['status']): number => {
 };
 
 const TenantTracker = () => {
+  const { toast } = useToast();
+
+  const handleOpenDrive = (driveUrl: string, clientName: string) => {
+    window.open(driveUrl, '_blank');
+    console.log(`Opening Google Drive expediente for ${clientName}`);
+  };
+
+  const handleCopyFormLink = async (formUrl: string, clientName: string) => {
+    try {
+      await navigator.clipboard.writeText(formUrl);
+      toast({
+        title: "Link copiado",
+        description: `El link del formulario de ${clientName} ha sido copiado al portapapeles.`,
+      });
+      console.log(`Form link copied for ${clientName}: ${formUrl}`);
+    } catch (err) {
+      console.error('Error copying link:', err);
+      toast({
+        title: "Error",
+        description: "No se pudo copiar el link. Inténtalo de nuevo.",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <section className="mb-10" id="investigaciones">
       <div className="flex justify-between items-center mb-6">
@@ -155,14 +193,36 @@ const TenantTracker = () => {
               label="Progreso de Solicitud" 
             />
             
-            {tenant.status === 'approved' && (
-              <div className="mt-4">
-                <Button variant="outline" className="w-full py-2 text-mica-blue border-mica-blue/30 hover:bg-mica-blue/5">
+            {/* Action buttons */}
+            <div className="mt-4 space-y-2">
+              {/* Google Drive Expediente Button */}
+              <Button 
+                variant="outline" 
+                className="w-full py-2 text-mica-blue border-mica-blue/30 hover:bg-mica-blue/5"
+                onClick={() => handleOpenDrive(tenant.driveUrl || '', tenant.name)}
+              >
+                <ExternalLink className="w-4 h-4 mr-2" />
+                Ver Expediente
+              </Button>
+
+              {/* Copy Form Link Button */}
+              <Button 
+                variant="outline" 
+                className="w-full py-2 text-gray-600 border-gray-300 hover:bg-gray-50"
+                onClick={() => handleCopyFormLink(tenant.clientFormUrl || '', tenant.name)}
+              >
+                <Share2 className="w-4 h-4 mr-2" />
+                Copiar Link del Formulario
+              </Button>
+
+              {/* Contract Info Button - only for approved status */}
+              {tenant.status === 'approved' && (
+                <Button variant="outline" className="w-full py-2 text-green-600 border-green-300 hover:bg-green-50">
                   <PenSquare className="w-4 h-4 mr-2" />
                   Llenar Información de Contrato
                 </Button>
-              </div>
-            )}
+              )}
+            </div>
           </Card>
         ))}
       </div>
