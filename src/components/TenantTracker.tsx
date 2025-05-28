@@ -198,8 +198,7 @@ const TenantTracker = () => {
               {/* Google Drive Expediente Button */}
               <Button 
                 variant="outline" 
-                size="sm"
-                className="w-full py-1 text-mica-blue border-mica-blue/30 hover:bg-mica-blue/5"
+                className="w-full py-2 text-mica-blue border-mica-blue/30 hover:bg-mica-blue/5"
                 onClick={() => handleOpenDrive(tenant.driveUrl || '', tenant.name)}
               >
                 <ExternalLink className="w-4 h-4 mr-2" />
@@ -209,8 +208,7 @@ const TenantTracker = () => {
               {/* Copy Form Link Button */}
               <Button 
                 variant="outline" 
-                size="sm"
-                className="w-full py-1 text-gray-600 border-gray-300 hover:bg-gray-50"
+                className="w-full py-2 text-gray-600 border-gray-300 hover:bg-gray-50"
                 onClick={() => handleCopyFormLink(tenant.clientFormUrl || '', tenant.name)}
               >
                 <Share2 className="w-4 h-4 mr-2" />
@@ -219,11 +217,7 @@ const TenantTracker = () => {
 
               {/* Contract Info Button - only for approved status */}
               {tenant.status === 'approved' && (
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  className="w-full py-1 text-green-600 border-green-300 hover:bg-green-50"
-                >
+                <Button variant="outline" className="w-full py-2 text-green-600 border-green-300 hover:bg-green-50">
                   <PenSquare className="w-4 h-4 mr-2" />
                   Llenar Información de Contrato
                 </Button>
